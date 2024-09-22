@@ -7,21 +7,21 @@ const Circular = () => {
 
   return (
     <>
-      <div className="flex flex-row justify-center gap-8">
+      <div className="flex flex-row justify-center gap-8 md:text-base text-xs">
         <div>
           <div className="sm:w-[35vw] h-[35vh] bg-blue-400 flex items-center justify-center rounded-lg">
             maybe video or image
           </div>
-          <div className="flex justify-evenly py-4">
+          <div className="flex justify-evenly py-4 md:gap-0 gap-4">
             <div className="flex flex-col items-center">
               <p className="font-semibold">Longitude</p>
-              <div className="bg-blue-400 w-24 h-10 rounded-xl flex items-center justify-center">
+              <div className="bg-blue-400 md:w-24 w-20 h-10 rounded-xl flex items-center justify-center">
                 110.461959
               </div>
             </div>
             <div className="flex flex-col items-center">
               <p className="font-semibold">Latitude</p>
-              <div className="bg-blue-400 w-24 h-10 rounded-xl flex items-center justify-center">
+              <div className="bg-blue-400 md:w-24 w-20 h-10 rounded-xl flex items-center justify-center">
                 -7.044723
               </div>
             </div>
