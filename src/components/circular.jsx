@@ -45,13 +45,13 @@ const Circular = () => {
           <div className="flex flex-row gap-x-12 text-lg">
             <div className="flex flex-col items-center gap-2">
               <p className="font-semibold">Azimuth</p>
-              <div className="border border-gray-500 w-16 h-16 rounded-full flex items-center justify-center">
+              <div className="border border-gray-500 w-20 h-20 rounded-full flex items-center justify-center">
                 {sensorData ? `${sensorData.azimuth}°` : "Loading..."}
               </div>
             </div>
             <div className="flex flex-col items-center gap-2">
               <p className="font-semibold">Speed</p>
-              <div className="border border-gray-500 w-16 h-16 rounded-full flex items-center justify-center">
+              <div className="border border-gray-500 w-20 h-20 rounded-full flex items-center justify-center">
                 {sensorData ? `${sensorData.speed_ms} m/s` : "Loading..."}
               </div>
             </div>
