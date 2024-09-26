@@ -9,18 +9,34 @@ const Circular = () => {
   const [sensorData, setSensorData] = useState(null); // State untuk menyimpan data terbaru
 
   useEffect(() => {
-    const sensorDataRef = query(ref(db, '/sensorData'), limitToLast(1)); // Query untuk mengambil data terbaru saja
+    const fetchData = async () => {
+      const sensorDataRef = query(ref(db, '/sensorData'), limitToLast(1)); // Query untuk mengambil data terbaru saja
 
-    onValue(sensorDataRef, (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        const latestData = Object.values(data)[0]; // Mengambil data terbaru dari object
+      // Membuat Promise untuk membungkus logika onValue
+      const dataPromise = new Promise((resolve, reject) => {
+        onValue(sensorDataRef, (snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            const latestData = Object.values(data)[0]; // Mengambil data terbaru dari object
+            resolve(latestData);
+          } else {
+            reject("No data available");
+          }
+        }, (error) => {
+          reject(error);
+        });
+      });
+
+      try {
+        const latestData = await dataPromise; // Tunggu data dari Firebase
         setSensorData(latestData);
         console.log("Latest Sensor Data: ", latestData); // Log data terbaru ke console
-      } else {
-        console.log("No data available");
+      } catch (error) {
+        console.error(error); // Handle error jika terjadi
       }
-    });
+    };
+
+    fetchData(); // Panggil fungsi fetchData saat komponen di-mount
   }, []);
 
   return (
