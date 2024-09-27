@@ -42,11 +42,11 @@ const Circular = () => {
   return (
     <>
       <div className="flex md:flex-row flex-col justify-center md:gap-8 md:my-16 my-4">
+        <div>
+        <h1 className="text-center mb-2 font-semibold text-2xl">Lintasan A/B</h1>
         <MonitoringCam />
+        </div>
         <div className="flex flex-col items-center md:gap-8">
-          <h1>
-            Latest data: {sensorData ? sensorData.timestamp : "Loading..."}
-          </h1>
           <div className="flex flex-row gap-4">
             <div className="flex flex-col items-center text-lg">
               <h1 className="font-semibold mb-2">Longitude</h1>
@@ -69,12 +69,21 @@ const Circular = () => {
               </div>
             </div>
             <div className="flex flex-col items-center gap-2">
+              <p className="font-semibold">Voltase Batre</p>
+              <div className="border border-gray-500 md:text-lg text-sm md:w-20 md:h-20 w-16 h-16 rounded-full flex items-center justify-center">
+                3.3 V
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-2">
               <p className="font-semibold">Speed</p>
               <div className="border border-gray-500 md:text-lg text-sm md:w-20 md:h-20 w-16 h-16 rounded-full flex items-center justify-center">
                 {sensorData ? `${sensorData.speed_ms} m/s` : "Loading..."}
               </div>
             </div>
           </div>
+          <h1>
+            Latest data: {sensorData ? sensorData.timestamp : "Loading..."}
+          </h1>
         </div>
       </div>
       <Footer />
