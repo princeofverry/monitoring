@@ -2,49 +2,40 @@ import React, { useEffect, useState } from "react";
 import "react-circular-progressbar/dist/styles.css";
 import Footer from "./footer";
 import MonitoringCam from "./monitoring";
-import { ref, onValue, query, limitToLast } from "firebase/database"; // Pastikan method yang tepat di-import
+import { ref, onValue, query, limitToLast } from "firebase/database";
 import { db } from "../lib/firestore";
 
 const Circular = () => {
   const [sensorData, setSensorData] = useState(null); // State untuk menyimpan data terbaru
 
   useEffect(() => {
-    const fetchData = async () => {
-      const sensorDataRef = query(ref(db, '/sensorData'), limitToLast(1)); // Query untuk mengambil data terbaru saja
+    const sensorDataRef = query(ref(db, '/sensorData'), limitToLast(1)); // Query untuk mengambil data terbaru
 
-      // Membuat Promise untuk membungkus logika onValue
-      const dataPromise = new Promise((resolve, reject) => {
-        onValue(sensorDataRef, (snapshot) => {
-          if (snapshot.exists()) {
-            const data = snapshot.val();
-            const latestData = Object.values(data)[0]; // Mengambil data terbaru dari object
-            resolve(latestData);
-          } else {
-            reject("No data available");
-          }
-        }, (error) => {
-          reject(error);
-        });
-      });
-
-      try {
-        const latestData = await dataPromise; // Tunggu data dari Firebase
-        setSensorData(latestData);
-        console.log("Latest Sensor Data: ", latestData); // Log data terbaru ke console
-      } catch (error) {
-        console.error(error); // Handle error jika terjadi
+    // Memasang listener untuk memantau perubahan data
+    const unsubscribe = onValue(sensorDataRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const latestData = Object.values(data)[0]; // Ambil data terbaru dari object
+        setSensorData(latestData); // Update state dengan data terbaru
+        console.log("Updated Sensor Data: ", latestData); // Log data ke console
+      } else {
+        console.log("No data available");
       }
-    };
+    }, (error) => {
+      console.error("Error fetching data: ", error); // Handle error jika ada
+    });
 
-    fetchData(); // Panggil fungsi fetchData saat komponen di-mount
-  }, []);
+    // Cleanup listener ketika komponen di-unmount
+    return () => unsubscribe();
+
+  }, []); // Hanya jalankan sekali saat komponen di-mount
 
   return (
     <>
       <div className="flex md:flex-row flex-col justify-center md:gap-8 md:my-16 my-4">
         <div>
-        <h1 className="text-center mb-2 font-semibold text-2xl">Lintasan A/B</h1>
-        <MonitoringCam />
+          <h1 className="text-center mb-2 font-semibold text-2xl">Lintasan A/B</h1>
+          <MonitoringCam />
         </div>
         <div className="flex flex-col items-center md:gap-8">
           <div className="flex flex-row gap-4">
