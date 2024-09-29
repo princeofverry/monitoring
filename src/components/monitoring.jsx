@@ -58,7 +58,7 @@ const MonitoringCam = () => {
         // Cek apakah ada data yang duplikat sebelum menambahkannya ke state
         setCoordinates(prevCoordinates => {
           const newCoordinates = latestCoordinates.filter(coord => {
-            return !prevCoordinates.some(existingCoord => 
+            return !prevCoordinates.some(existingCoord =>
               existingCoord.lat === coord.lat && existingCoord.lon === coord.lon
             );
           });
@@ -76,7 +76,7 @@ const MonitoringCam = () => {
     <div className="bg-[#6C3B3B] px-6 py-8 rounded-xl">
       <h1 className="mb-6 text-xl text-white font-medium">📍 Monitoring Map</h1>
       <div className="sm:w-[35vw] h-[35vh] shadow-md rounded-xl">
-        <MapContainer center={[0, 0]} zoom={2} style={{ height: "100%", width: "100%" }}>
+        <MapContainer center={[0, 0]} zoom={2} style={{ height: "100%", width: "100%", borderRadius: "12px" }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
