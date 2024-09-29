@@ -58,7 +58,7 @@ const MonitoringCam = () => {
         // Cek apakah ada data yang duplikat sebelum menambahkannya ke state
         setCoordinates(prevCoordinates => {
           const newCoordinates = latestCoordinates.filter(coord => {
-            return !prevCoordinates.some(existingCoord => 
+            return !prevCoordinates.some(existingCoord =>
               existingCoord.lat === coord.lat && existingCoord.lon === coord.lon
             );
           });
@@ -73,7 +73,7 @@ const MonitoringCam = () => {
   }, []);
 
   return (
-    <div className="bg-[#6C3B3B] px-6 py-8 rounded-xl">
+    <div className="bg-[#2992BE] px-6 py-8 rounded-xl">
       <h1 className="mb-6 text-xl text-white font-medium">📍 Monitoring Map</h1>
       <div className="sm:w-[35vw] h-[35vh] shadow-md rounded-xl">
         <MapContainer center={[0, 0]} zoom={2} style={{ height: "100%", width: "100%" }}>
