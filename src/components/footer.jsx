@@ -9,8 +9,8 @@ const Footer = () => {
                     <img
                         src={kapal}
                         alt="kapal"
-                        className="absolute bottom-0 right-0 transform"
-                        height={100}
+                        className="absolute bottom-4 left-0 transform"
+                        width={250}
                     />
                 </div>
                 {/* <div className="relative h-full">
