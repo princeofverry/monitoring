@@ -8,7 +8,7 @@ import { db } from "../lib/firestore";
 // Importing icons from public folder
 const customIcon = new L.Icon({
   iconUrl: "/ship.png",  // Path relative ke folder public
-  iconSize: [25, 41],
+  iconSize: [25, 25],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
 });

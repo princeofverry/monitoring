@@ -62,7 +62,7 @@ const Circular = () => {
             <div className="flex flex-col items-center gap-2">
               <p className="font-semibold">Voltase Batre</p>
               <div className="border border-gray-500 md:text-lg text-sm md:w-20 md:h-20 w-16 h-16 rounded-full flex items-center justify-center">
-                3.3 V
+                14.8 V
               </div>
             </div>
             <div className="flex flex-col items-center gap-2">
