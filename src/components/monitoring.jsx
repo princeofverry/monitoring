@@ -72,19 +72,19 @@ const MonitoringCam = () => {
 
           {/* Render polyline for tracking path - Diupdate untuk mengikuti marker */}
           {track.length > 1 && (
-            <Polyline 
-              positions={track.map(coord => [coord.lat, coord.lon])} 
-              color="blue" 
+            <Polyline
+              positions={track.map(coord => [coord.lat, coord.lon])}
+              color="blue"
               weight={3} // Tebal polyline
             />
           )}
 
           {/* Render markers - Pastikan berada di atas polyline */}
           {coordinates.map((coord, index) => (
-            <Marker 
-              key={index} 
-              position={[coord.lat, coord.lon]} 
-              icon={customIcon} 
+            <Marker
+              key={index}
+              position={[coord.lat, coord.lon]}
+              icon={customIcon}
               riseOnHover={true} // Membuat marker tetap terlihat di atas polyline saat di-hover
             >
               <Popup>
