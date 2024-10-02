@@ -92,21 +92,48 @@ const Result = () => {
                 ) : error ? (
                     <p>{error}</p>
                 ) : (
-                    camera1Images.map((image, index) => (
-                        <div key={index} className="w-[200px] h-[200px] flex flex-col items-center justify-center">
-                            <img src={image.url} alt={`Kamera 1 - ${index}`} className="w-full h-full object-cover" />
-                            <div className="text-black text-xs">
-                                {image.geotag && (
-                                    <>
-                                        <p>{image.geotag.day}</p>
-                                        <p>{image.geotag.date}</p>
-                                        <p>{image.geotag.time}</p>
-                                        <p>S {image.geotag.coordinates.lat},  E {image.geotag.coordinates.lon}</p>
-                                    </>
-                                )}
+                    <>
+                        {/* Div untuk gambar pertama */}
+                        {camera1Images[0] && (
+                            <div className="w-[200px] h-[200px] flex flex-col items-center justify-center">
+                                <h1>Surface</h1>
+                                <div className="mb-4">
+                                    <img src={camera1Images[0].url} alt="Kamera 1 - Image 1" className="w-full h-full object-cover" />
+                                    <div className="text-black text-xs">
+                                        {camera1Images[0].geotag && (
+                                            <>
+                                                <p>{camera1Images[0].geotag.day}</p>
+                                                <p>{camera1Images[0].geotag.date}</p>
+                                                <p>{camera1Images[0].geotag.time}</p>
+                                                <p>S {camera1Images[0].geotag.coordinates.lat}, E {camera1Images[0].geotag.coordinates.lon}</p>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    ))
+                        )}
+
+                        {/* Div untuk gambar kedua */}
+                        {camera1Images[1] && (
+                            <div className="w-[200px] h-[200px] flex flex-col items-center justify-center">
+                                <h1>Underwater</h1>
+                                <p>Loading...</p>
+                                {/* <div className="mb-4">
+                                    <img src={camera1Images[1].url} alt="Kamera 1 - Image 2" className="w-full h-full object-cover" />
+                                    <div className="text-black text-xs">
+                                        {camera1Images[1].geotag && (
+                                            <>
+                                                <p>{camera1Images[1].geotag.day}</p>
+                                                <p>{camera1Images[1].geotag.date}</p>
+                                                <p>{camera1Images[1].geotag.time}</p>
+                                                <p>S {camera1Images[1].geotag.coordinates.lat}, E {camera1Images[1].geotag.coordinates.lon}</p>
+                                            </>
+                                        )}
+                                    </div>
+                                </div> */}
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 
@@ -125,11 +152,11 @@ const Result = () => {
                         height: '240%', // Increase height to prevent clipping
                         overflow: 'hidden',
                     }}
-                >
-                </iframe>
+                />
             </div>
         </div>
     );
+
 };
 
 export default Result;
